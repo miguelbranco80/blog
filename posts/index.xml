@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on notes.spacebase.org</title>
+    <link>https://notes.spacebase.org/posts/</link>
+    <description>Recent content in Posts on notes.spacebase.org</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 15 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://notes.spacebase.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How We&#39;re Using AI to Build Software (And Everything Else)</title>
+      <link>https://notes.spacebase.org/posts/how-were-using-ai-to-build-software/</link>
+      <pubDate>Sun, 15 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://notes.spacebase.org/posts/how-were-using-ai-to-build-software/</guid>
+      <description>&lt;p&gt;To me, the real inflection point came at the end of May 2025.&lt;/p&gt;&#xA;&lt;p&gt;That&amp;rsquo;s when Anthropic—the company founded by ex-OpenAI researchers—released Claude 4, a new family of large language models. For software development, it is said that the previous models produced errors in 30-40% of generated code. Claude 4 is rumoured to have dropped that to 6-10%. It certainly matches my own observations&amp;hellip;&lt;/p&gt;&#xA;&lt;p&gt;This drop is not yet another incremental improvement. To me, it&amp;rsquo;s a phase change. When your error rate drops by that much, it fundamentally changes what&amp;rsquo;s possible.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>The End of Websites: Why We&#39;re Moving to a Conversational Web</title>
+      <link>https://notes.spacebase.org/posts/the-end-of-websites/</link>
+      <pubDate>Thu, 15 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://notes.spacebase.org/posts/the-end-of-websites/</guid>
+      <description>&lt;p&gt;Websites are dying. Not quickly, but they&amp;rsquo;re dying.&lt;/p&gt;&#xA;&lt;p&gt;The web has been a collection of pages for 30 years. You click, you scroll, you hunt for what you need. It&amp;rsquo;s slow and dumb and we&amp;rsquo;ve all just accepted it.&lt;/p&gt;&#xA;&lt;p&gt;But something&amp;rsquo;s shifting. Instead of browsing, we&amp;rsquo;re starting to talk to our computers. And they&amp;rsquo;re actually talking back.&lt;/p&gt;&#xA;&lt;h2 id=&#34;why-websites-are-broken&#34;&gt;Why Websites Are Broken&lt;/h2&gt;&#xA;&lt;p&gt;Here&amp;rsquo;s what you do when you want car insurance: Open Google. Click through 5-10 insurance sites. Fill out the same form repeatedly. Compare prices manually. Maybe use a comparison site that shows you 3 options instead of 300.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Welcome to notes.spacebase.org</title>
+      <link>https://notes.spacebase.org/posts/hello-world/</link>
+      <pubDate>Tue, 02 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://notes.spacebase.org/posts/hello-world/</guid>
+      <description>&lt;p&gt;I finally got tired of pretending I&amp;rsquo;d one day set up a proper blog.&lt;/p&gt;&#xA;&lt;p&gt;This is it.&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;ll write here occasionally — thoughts on systems, AI tooling, declarative platforms, and whatever else leaks out of my head.&lt;/p&gt;&#xA;&lt;p&gt;If you&amp;rsquo;re reading this, you&amp;rsquo;re either early&amp;hellip; or lost. Either way, welcome.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://github.com/miguelbranco80&#34;&gt;Who am I?&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
