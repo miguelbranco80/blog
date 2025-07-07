@@ -1,0 +1,26 @@
+# Hugo output
+/public/
+/resources/_gen/
+/hugo_stats.json
+
+# If using /docs for GitHub Pages, don't ignore it:
+# /docs/  <-- only ignore if you don't use it for deployment
+
+# OS & Editor Junk
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# Build tools
+node_modules/
+dist/
+*.log
+
+# Submodule config backup (if switching themes)
+*.orig
+
+# Hugo server PID file
+hugo_server.pid

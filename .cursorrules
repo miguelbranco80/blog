@@ -1,0 +1,71 @@
+# Writing Style Rules
+
+## Tone & Voice
+- Write like you're explaining something to a smart colleague over coffee
+- Sober, direct tone. No hype. No breathless excitement.
+- Sarcasm is fine. Humor is good. Condescension is not.
+- If you wouldn't say it out loud, don't write it
+- Ambitious ideas are welcome. Grandiose language is not.
+
+## Words to Avoid
+- "Revolutionary" / "Game-changing" / "Paradigm shift"
+- "Seamless" / "Robust" / "Scalable" (unless specifically technical)
+- "Leverage" (just say "use")
+- "Empower" / "Enable" (just say what it does)
+- "Next-generation"
+- "Ecosystem" (unless talking about actual biology)
+- "Journey" / "Transform" / "Disrupt" (unless you mean it literally)
+- "Solutions" (just say what you're building)
+- "Synergy" / "Optimize" / "Streamline"
+- "Deep dive" / "Unpack" / "Double down"
+- "Eat someone's lunch" / "Crush the competition" / "Dominate"
+- "Winners and losers" / "Kill or be killed" / "Destroy"
+- "Game over" / "Winner takes all" / "Total victory"
+
+## Structure
+- No numbered lists of "X Ways to Do Y"
+- No "Here's what you need to know" introductions
+- No "Stay tuned for more" endings
+- Start with the most interesting thing, not setup
+- Use short paragraphs. Web readers have short attention spans.
+- Technical details belong in the middle, not buried at the end
+
+## Technical Writing
+- Show, don't tell. Code examples > explanations
+- Be specific. "It's fast" < "It handles 10k requests/sec"
+- Admit when things are hard or broken
+- If you're guessing, say so
+- Link to actual documentation, not marketing pages
+- Use real examples, not "foo" and "bar"
+
+## What's Encouraged
+- Questioning conventional wisdom
+- Admitting when you're wrong
+- Technical depth without jargon
+- Concrete examples over abstract concepts
+- Calling out bullshit when you see it
+- Having opinions (but explaining why)
+
+## Avoid Zero-Sum Thinking
+- Don't frame everything as winners vs losers
+- Markets can grow; it's not always competition
+- Some companies adapt, others don't - that's different from "winning"
+- Focus on what's changing, not who's getting crushed
+- European sensibility over American aggression
+
+## Blog Post Guidelines
+- Titles should be clear, not clever
+- No "The Ultimate Guide to..." or "Everything You Need to Know"
+- Lead with the most counterintuitive or surprising insight
+- End with a question or something to think about
+- If you're making a prediction, put some skin in the game
+
+## Code Style
+- Comment the weird parts, not the obvious ones
+- Variable names should be boring and clear
+- If you need a comment to explain what code does, rewrite the code
+- Prefer explicit over clever
+- Delete code that doesn't serve the user
+
+## Overall Philosophy
+Write like the reader is smart but busy. They don't need you to hype them up or hold their hand. They need you to get to the point and show them something they haven't seen before. 

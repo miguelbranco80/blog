@@ -1,0 +1,33 @@
+baseURL = "https://notes.spacebase.org"
+languageCode = "en-us"
+title = "notes.spacebase.org"
+theme = "PaperMod"
+
+[params]
+  author = "Miguel Branco"
+  showReadingTime = true
+  showBreadCrumbs = false
+  defaultTheme = "auto"  # can be "light", "dark", or "auto"
+  socialIcons = [
+    { name = "github", url = "https://github.com/miguelbranco80" },
+    { name = "x", url = "https://x.com/miguelbranco80" },
+    { name = "linkedin", url = "https://linkedin.com/in/miguelbranco80" }
+  ]
+
+[params.homeInfoParams]
+  Title = "notes.spacebase.org"
+  Content = """
+  A quiet place for my notes and thoughts.
+
+  Built by [Miguel Branco](https://spacebase.org)
+  """
+
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    name = "Posts"
+    url = "/posts/"
+    weight = 1
+
+[markup]
+  defaultMarkdownHandler = "goldmark"
