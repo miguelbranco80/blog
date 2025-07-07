@@ -24,3 +24,5 @@ dist/
 
 # Hugo server PID file
 hugo_server.pid
+docs/
+docs/
