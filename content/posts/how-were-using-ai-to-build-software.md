@@ -228,6 +228,16 @@ This isn't comfortable to say. People will lose jobs as entire categories of wor
 
 The question is: What work can't be automated? What requires human judgment, creativity, taste, or responsibility? That's where people need to move.
 
+### The Person Driving Matters
+
+At first, I thought these tools would level the playing field. After all, we now have access to “deep research”—the kind of architectural insight and pattern recognition that used to require years at places like Facebook, Google, or Microsoft. Suddenly, any developer could evaluate systems at that level. The knowledge gap seemed to shrink overnight.
+
+But the reality is more nuanced. Today, the effectiveness of these tools still heavily depends on who is driving the process. A developer with high agency—someone who can juggle complexity, go deep when needed, and solve unfamiliar problems independently—can become 10x, 50x, or even 100x more productive. (Fake numbers, but you get the idea.) Meanwhile, someone who mostly “does the job,” sticks to one familiar stack, and waits to be trained or directed might see a much smaller boost—maybe 2x.
+
+That variance isn’t just theoretical—it’s real, and it shows up quickly in team velocity.
+
+Strangely, this doesn’t make me pessimistic about younger or less experienced developers. Quite the opposite. A motivated newcomer today can build more projects and run more experiments in one year than some people could in a decade. They just have to care. If they show real interest, the learning curve is no longer steep—it’s a rocket.
+
 ## Multi-Agent Future
 
 We're already seeing the next phase: multi-agent systems.

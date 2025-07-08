@@ -22,9 +22,6 @@ theme = "PaperMod"
   Built by [Miguel Branco](https://spacebase.org)
   """
 
-[params.assets]
-  customJS = [ "js/cloudflare-analytics.js" ]
-
 [menu]
   [[menu.main]]
     identifier = "posts"
