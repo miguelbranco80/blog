@@ -5,8 +5,6 @@ draft: false
 description: "My experience building a software dark factory to automate the development of an existing application."
 ---
 
-# Building My Own Software Dark Factory
-
 The following is a narration of my own experience implementing a software dark factory: a software system that autonomously implements software. We build the factory; the factory builds the product.
 
 This is my own experience applying the principles outlined in [Ryan Lopopolo’s](https://x.com/_lopopolo) [OpenAI post on harness engineering](https://openai.com/index/harness-engineering/), which may well go down as one of the most influential software engineering posts in recent times. There is also a [Latent Space episode](https://www.youtube.com/watch?v=CeOXx-XTYek) with [@swyx](https://twitter.com/swyx) interviewing Ryan Lopopolo, which is well worth listening to alongside the blog. The core framing from the post is simple and powerful:
