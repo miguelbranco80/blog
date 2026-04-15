@@ -2,13 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://notes.spacebase.org/posts/how-to-build-software-in-the-age-where-ai-writes-most-of-it/</loc>
-    <lastmod>2026-01-09T00:00:00+00:00</lastmod>
+    <loc>https://notes.spacebase.org/posts/building-my-own-software-dark-factory/</loc>
+    <lastmod>2026-04-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://notes.spacebase.org/</loc>
-    <lastmod>2026-01-09T00:00:00+00:00</lastmod>
+    <lastmod>2026-04-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://notes.spacebase.org/posts/</loc>
+    <lastmod>2026-04-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://notes.spacebase.org/posts/how-to-build-software-in-the-age-where-ai-writes-most-of-it/</loc>
     <lastmod>2026-01-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://notes.spacebase.org/posts/how-were-using-ai-to-build-software/</loc>

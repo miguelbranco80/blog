@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Building My Own Software Dark Factory | notes.spacebase.org</title>
+<meta name="keywords" content="">
+<meta name="description" content="A narration of implementing a system that autonomously implements software: in-repo knowledge, rigid architecture, guardrails, worktree-ready testing, and a small loop that advances PRs.">
+<meta name="author" content="Miguel Branco">
+<link rel="canonical" href="https://notes.spacebase.org/posts/building-my-own-software-dark-factory/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.aeb04085357f24835232aa89766467110fb6da019fa0a790d4d097b3949d7276.css" integrity="sha256-rrBAhTV/JINSMqqJdmRnEQ&#43;22gGfoKeQ1NCXs5SdcnY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://notes.spacebase.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://notes.spacebase.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://notes.spacebase.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://notes.spacebase.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://notes.spacebase.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://notes.spacebase.org/posts/building-my-own-software-dark-factory/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ba0363cc644f41eda2ace0d78e742f89"}'></script>
+<meta property="og:url" content="https://notes.spacebase.org/posts/building-my-own-software-dark-factory/">
+  <meta property="og:site_name" content="notes.spacebase.org">
+  <meta property="og:title" content="Building My Own Software Dark Factory">
+  <meta property="og:description" content="A narration of implementing a system that autonomously implements software: in-repo knowledge, rigid architecture, guardrails, worktree-ready testing, and a small loop that advances PRs.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-04-15T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-04-15T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Building My Own Software Dark Factory">
+<meta name="twitter:description" content="A narration of implementing a system that autonomously implements software: in-repo knowledge, rigid architecture, guardrails, worktree-ready testing, and a small loop that advances PRs.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://notes.spacebase.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Building My Own Software Dark Factory",
+      "item": "https://notes.spacebase.org/posts/building-my-own-software-dark-factory/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Building My Own Software Dark Factory",
+  "name": "Building My Own Software Dark Factory",
+  "description": "A narration of implementing a system that autonomously implements software: in-repo knowledge, rigid architecture, guardrails, worktree-ready testing, and a small loop that advances PRs.",
+  "keywords": [
+    
+  ],
+  "articleBody": "Building My Own Software Dark Factory The following is a narration of my own experience implementing a software dark factory: a software system that autonomously implements software. We build the factory; the factory builds the product.\nThis is my own experience applying the principles outlined in Ryan Lopopolo’s OpenAI post on harness engineering, which I think may well go down as one of the most influential software engineering posts in recent times. There is also a Latent Space episode with @swyx interviewing Ryan Lopopolo, which is well worth listening to alongside the blog. The core framing from the post is simple and powerful:\n“Humans steer. Agents execute.”\nThe basic idea is to build a system that can autonomously build and maintain your software product. Before late 2025, this still felt unthinkable. Now it is very much real. The latest models gave a big jump in capability and, if we are being honest, a huge amount of development work is now automatable. Humans are increasingly there to guide, steer, constrain, review the system, and shape direction.\nThat may sound shocking if you are not deep in software automation, but the trend line is unmistakable. Most of us now need to start acting more like engineering managers of agentic systems. If you had a team of a hundred developers under you, would you review every line of code, every commit, every pull request? Of course not. You would implement best practices, establish cultural habits, put in place guardrails, inspect progress, occasionally go deep in one area, maybe create a bug-fix week, and so on.\nNow you need to build a system that does exactly this for your agents.\nIn my own case, unlike the OpenAI blog post, I did not start from a fresh repository. I started from an existing application. I could not initially see how to go from “here to there” — from manually describing issues, creating and reviewing PRs, and steering everything directly — to a world where agents autonomously build, test, review, and merge code without my involvement.\nSome things seemed obvious. Agents need context, so putting documentation directly in the code repository made complete sense. An agent with more context will make better decisions. If your agent knows it is building an enterprise application in a highly regulated domain, it will naturally make different assumptions about reliability, process, auditability, and best practices. So the repository had to contain a lot more product and architectural context. That part I understood.\nStill, something was missing.\nAfter reading the OpenAI post, my real “ah ha” moment came when they discussed system architecture. They argue that agents are most effective in environments with strict boundaries and predictable structure, and that they deliberately built the application around a rigid architectural model. Sure: more constraints, more linters, more checkers, and more testing obviously matter. But then it got more interesting. The post describes a system in which code inside a domain can only depend “forward” through a fixed set of layers, and where cross-cutting concerns enter only through explicit interfaces. Anything else is disallowed and enforced mechanically.\nThat was the key insight for me. This is exactly the kind of architecture many teams would postpone until they had hundreds of engineers. But with coding agents, it becomes an early prerequisite. The constraints are what allow speed with less decay. That was one of the biggest lessons in the OpenAI post, and I think it is completely right.\nOnce you have tens or hundreds of agents working in your codebase, you need to rearchitect your code in ways that would previously have seemed overblown or overly complex for smaller teams. Those things are no longer optional. They become mandatory, because your team is no longer small.\nAt that point, I had a roadmap. Broadly, it looked like this:\nConcentrate the entire set of architectural and product documentation into the code repository and build a proper set of agent rules Redo the architecture into much more fine-grained domains Add guardrails Improve testing, dramatically Then, finally, implement the software dark factory So what did we actually do? Let’s go through it.\n1. Concentrate the entire set of architectural and product documentation The OpenAI blog post has an excellent example of this. One of the biggest takeaways from it is that AGENTS.md should not be the encyclopedia. It should be the table of contents, pointing into a structured in-repo knowledge base.\nThat is the same the direction I took, and based on a well battle-tested: progressive disclosure.\nWhen I say I moved the documentation into the repository, I mean everything: who the customer is, what kind of buyer we are selling to, what experience they are supposed to have, what feedback we have received, what the major workflows are, why certain design decisions were made, what tradeoffs matter, what constraints define the product, and so on.\nThen I made AGENTS.md into the map across all of that information, so agents could find what they needed when they needed it, rather than trying to cram everything into one giant instruction file.\n2. Architecture At this point I had to migrate my code from “Here to There”.\nThat meant domain isolation, small granular changes, and one-way dependencies between subsystems as much as possible. The blog says this clearly enough, but I think it is worth internalizing properly. If you want agents to move quickly without slowly wrecking the codebase, they need strong structure around them. Small domains - coupled with smaller issues later on - will lead to small, short-lived PRs, which will move work further along.\nThere was a long design phase, which involved exploring every aspect of the codebase and better identifying the domains. Once that was decided - going from ~4 components to over 14 subsystems in our case, it was time to start the migration.\nI did not automate that migration. It was a long and rough sprint, the “old-fashioned way” with N coding agents open in parallel, resulting in hundreds of PRs. It was rough, but there was enough testing around to support the churn.\nRemarkably, only one bug was introduced while the codebase churned into a new architecture. Agents were extremely competent at breaking these files apart per domain and moving code mostly untouched, while adding temporary scaffolding - “connectors”, “ports”, etc - to bridge the new and old architectures.\nThat, by itself, tells you something about how capable software agents have become. And I’m not the only one - the OpenClaw folks recently went over a similar migration with reports stating most of the code was rewritten. Again, this is possible now, but it requires a healthy dose of grind…\n3. Guardrails When GPT-5.4 repeatedly kept telling me “this is good enough,” I knew it was time for the next phase: guardrails.\nIn reality, I was adding guardrails continuously, even during the migration. Every time a component was starting to take check, we’d add scripts to enforce architecture checks at the CI level. Our CI became much more complex and much more thorough. It gained more phases, deeper checks, and stricter requirements.\nAt this phase, I added much stronger GitHub checks and GitHub rulesets to prevent merges without reviews, without comments being addressed, and without required CI stages passing green. That let me trigger agent reviews and force proper responses before moving forward.\nI also did another pass on the docs I had written in phase one. Once that documentation existed, we could start enforcing it. That meant linters, checks, validation scripts, and consistency rules. This required a large set of bespoke scripts — many of them —, completely tailored to how we build software and our specific architecutre. These enforced dependency chains between modules, architectural boundaries, repository conventions, and so on.\nAll of this was of course built with agentic coding itself.\n4. Testing, testing At this point we were almost there to “unleash” the agents. We had a much better architecture, but we still were not ready for massive agent throughput, because the testing was not good enough.\nOur unit tests were decent: we had plenty and added a very healthy chunk during the migration.\nBut our integration tests were messy and required too many services set up in specific ways. Our end-to-end tests were even more brittle and basically had to be treated as occasional ceremonies that a central CI or dev would run occasionally.\nThat had to change because it would be a massive constraint as the “team” got larger.\nMore specifically, our entire testing - in fact, our entire application - had now to work cleanly on git worktrees. Git worktrees matter a lot here. They are what make true parallelism possible. The OpenAI team explicitly notes that making the app bootable per worktree was critical to letting agents run isolated instances per change.\nSo we reworked the testing harness heavily. We moved toward Compose-based execution for everything. Integration tests ran entirely inside Compose; ports were auto-selected, and the harness learned how to cope with that. Then we did the same for end-to-end tests. The system boots everything and runs Playwright-based flows and the rest of the stack in isolation.\nThis was not just about testing. It improved development ergonomics too. Now I can have tens of instances of our software and all its dependencies — databases, Temporal, Redis, workers, everything — all isolated. I can spin up as many instances as I want and start a new one trivially and discard it. Again, this would have been months of works a while ago; now it’s a highly-focused “afternoon”.\nGit worktrees enabled the next level of parallelism and are definitely worth the effort.\n5. Then, finally, implement the “Software Dark Factory” So what is, concretely, a software dark factory?\nIn my case, it is… a script. That may sound underwhelming; and it’s by design.\nMy basic starting point was GitHub Issues. I know many teams use Linear, but we are not there. So I decided to rely on GitHub labels. The dark factory essentially picks issues according to one or more labels that I pass in at startup, and starts working on them, one issue after the other.\nWhy labels? Because I do not want it to take everything. I explicitly label issues that are eligible for autonomous development — and increasingly that is most of them. If the issue description is good enough, it goes into the queue.\nThen the factory loops issue by issue. It implements one, then moves to the next. That is the basic idea.\nI had to iterate a few times to get the dark factory to behave autonomously. In the first iterations, the script was extremely opinionated. It had a set of deterministic steps in it: after X, ask Codex for a review; after Y, do Z; if a comment appears, take action Q; and so on. In the real world, it kept failing on edge conditions that hadn’t been considered.\nI was not being AI-pilled enough. I was not internalizing the bitter lesson. I should have been letting the model handle much more of the behavior itself. Now the loop basically hands the entire state of a GitHub PR to the model and says: advance this as far as you can. Then the model responds with one of a few outcomes. It may say that a human needs to take over the PR, and leave a comment explaining why. It may say to sleep for some number of seconds and wake up later because CI is still running and there is no point staying active. Or it may say that the work is merged. Because the model reads the entire GitHub state — comments, checks, failures, reviews, status, everything — it can usually resolve the next step by itself. If I leave a random steering comment in the middle of the PR while work is happening, it incorporates that too. But normally it just runs autonomously: resolving conflicts, addressing code review comments, and fixing CI failures.\nOriginally, I also had very specific rules embedded in the dark factory prompts themselves about how the system should behave. That was a mistake. I realized that many of the rules I wanted did not belong in the dark factory script at all. They belonged in AGENTS.md, so they would apply universally to any coding agent - and to any work happening outside the dark factory. It is much better if your repo-level instructions teach agents how to respond to GitHub comments, when to leave a comment if uncertain, how to escalate, how to close loops, and how to behave generally speaking: adding comments when they are not sure or need clarification, etc. This just makes for a superior experience, and while it is mandatory in the dark factory agent, it is super helpful in general, as AGENTS.md instructions or skills.\nThe dark-factory loop became much smaller. Its job is basically just to say: keep making progress. I also added an issue-ordering phase so that it picks the next logical thing to work on. I let it look at all candidate issues under the chosen label, so it can choose a sensible sequence and “respect” - or find - issue dependencies. Usually I do this ordering up front, partly to avoid hammering the GitHub APIs too often.\nCould I do all of this with skills and more elegant infrastructure? Probably. But here we are on April 15, 2026, and this is how I roll.\nWhat next The next phase is integrating observability and feedback. That is the next obvious layer, and it makes perfect sense. The OpenAI post talks about giving agents direct access not just to code and tests but also to logs, metrics, traces, and UI state, so they can validate behavior directly and reason from real runtime feedback.\nSo that is where this goes next.\n“But I am not ready!” Look, I get it. But I’d encourage you to do points 1 through 4 anyway. And do them now.\nThings like tighter architecture, stronger CI, richer documentation - including product requirements, users, etc -, better testing and perhaps worktree compatibility will dramatically improve your PR quality even before you go fully autonomous. Your agents - even if they are strangled on a tight leash - will get much better context and hence, work.\nAnd after seeing some more significant productivity gains, you will be much more willing to graduate, over time, into the role that actually matters here: engineering manager of an agentic system.\nThe result? Last night I went to bed — rather late; these are exciting times — and woke up to 35+ high-quality PRs merged, cleaning up bugs, tech debt, and other issues. I took a brief look. They all looked excellent. Good job team!\nI also noticed one convention I do not like: agents, like people, tend to add more code than they remove. So I made a note to tune the contributor guidance in AGENTS.md. There’s a certain set of features that may need refactoring soon; I may schedule a few issues to tackle it soon.\nI will also be adding more cron-style automations to discover new issues automatically. My code-reviewer cron job already found a couple of tech-debt issues we were not tracking and filed them.\nAnd I spent most of the morning thinking about product direction, unencumbered by implementation details.\nIt is liberating. Honestly it is stressful in a different way, because now I think more about the bigger (business) issues.\nOh — and what are we building? It is a platform called Kora. Kora is a workflow operating system for real business processes. It helps companies take the workflows they already rely on, approvals, escalations, exception handling, change control, and run them in a system that is durable, observable, auditable, and safe to evolve.\nTeams can start by implementing the workflows they already run today, with no agents required. Kora makes those processes executable, traceable, and easier to improve over time. Once the workflow is formalized, companies can identify which steps should remain human, which can be automated, and where AI agents can add value without giving up control, reliability, or oversight.\nWhether a process starts as an internal procedure, an approval flow, or a BPMN-style model, Kora provides a controlled path from manual operations to gradual automation. Instead of replacing operational workflows with brittle AI glue, it turns them into systems of execution, approval, and change.\nYou can learn more here. Or just ping me at miguel@raw-labs.com for a trial!\nThanks for reading and I hope this was helpful!\nReferences Ryan Lopopolo, Harness Engineering, OpenAI. Latent Space, Extreme Harness Engineering: Ryan Lopopolo, OpenAI (YouTube). ",
+  "wordCount" : "2772",
+  "inLanguage": "en",
+  "datePublished": "2026-04-15T00:00:00Z",
+  "dateModified": "2026-04-15T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Miguel Branco"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://notes.spacebase.org/posts/building-my-own-software-dark-factory/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "notes.spacebase.org",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://notes.spacebase.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://notes.spacebase.org/" accesskey="h" title="notes.spacebase.org (Alt + H)">notes.spacebase.org</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://notes.spacebase.org/posts/" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Building My Own Software Dark Factory
+    </h1>
+    <div class="post-description">
+      A narration of implementing a system that autonomously implements software: in-repo knowledge, rigid architecture, guardrails, worktree-ready testing, and a small loop that advances PRs.
+    </div>
+    <div class="post-meta"><span title='2026-04-15 00:00:00 +0000 UTC'>April 15, 2026</span>&nbsp;·&nbsp;14 min&nbsp;·&nbsp;Miguel Branco
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="building-my-own-software-dark-factory">Building My Own Software Dark Factory<a hidden class="anchor" aria-hidden="true" href="#building-my-own-software-dark-factory">#</a></h1>
+<p>The following is a narration of my own experience implementing a software dark factory: a software system that autonomously implements software. We build the factory; the factory builds the product.</p>
+<p>This is my own experience applying the principles outlined in Ryan Lopopolo’s <a href="https://openai.com/index/harness-engineering/">OpenAI post on harness engineering</a>, which I think may well go down as one of the most influential software engineering posts in recent times. There is also a <a href="https://www.youtube.com/watch?v=CeOXx-XTYek">Latent Space episode</a> with <a href="https://twitter.com/swyx">@swyx</a> interviewing Ryan Lopopolo, which is well worth listening to alongside the blog. The core framing from the post is simple and powerful:</p>
+<blockquote>
+<p>“Humans steer. Agents execute.”</p>
+</blockquote>
+<p>The basic idea is to build a system that can autonomously build and maintain your software product. Before late 2025, this still felt unthinkable. Now it is very much real. The latest models gave a big jump in capability and, if we are being honest, a huge amount of development work is now automatable. Humans are increasingly there to guide, steer, constrain, review the system, and shape direction.</p>
+<p>That may sound shocking if you are not deep in software automation, but the trend line is unmistakable. Most of us now need to start acting more like engineering managers of agentic systems. If you had a team of a hundred developers under you, would you review every line of code, every commit, every pull request? Of course not. You would implement best practices, establish cultural habits, put in place guardrails, inspect progress, occasionally go deep in one area, maybe create a bug-fix week, and so on.</p>
+<p>Now you need to build a system that does exactly this for your agents.</p>
+<p>In my own case, unlike the OpenAI blog post, I did not start from a fresh repository. I started from an existing application. I could not initially see how to go from “here to there” — from manually describing issues, creating and reviewing PRs, and steering everything directly — to a world where agents autonomously build, test, review, and merge code without my involvement.</p>
+<p>Some things seemed obvious. Agents need context, so putting documentation directly in the code repository made complete sense. An agent with more context will make better decisions. If your agent knows it is building an enterprise application in a highly regulated domain, it will naturally make different assumptions about reliability, process, auditability, and best practices. So the repository had to contain a lot more product and architectural context. That part I understood.</p>
+<p>Still, something was missing.</p>
+<p>After reading the OpenAI post, my real “ah ha” moment came when they discussed system architecture. They argue that agents are most effective in environments with strict boundaries and predictable structure, and that they deliberately built the application around a rigid architectural model. Sure: more constraints, more linters, more checkers, and more testing obviously matter. But then it got more interesting. The post describes a system in which code inside a domain can only depend “forward” through a fixed set of layers, and where cross-cutting concerns enter only through explicit interfaces. Anything else is disallowed and enforced mechanically.</p>
+<p>That was the key insight for me. This is exactly the kind of architecture many teams would postpone until they had hundreds of engineers. But with coding agents, it becomes an early prerequisite. The constraints are what allow speed with less decay. That was one of the biggest lessons in the OpenAI post, and I think it is completely right.</p>
+<p>Once you have tens or hundreds of agents working in your codebase, you need to rearchitect your code in ways that would previously have seemed overblown or overly complex for smaller teams. Those things are no longer optional. They become mandatory, because your team is no longer small.</p>
+<p>At that point, I had a roadmap. Broadly, it looked like this:</p>
+<ol>
+<li>Concentrate the entire set of architectural and product documentation into the code repository and build a proper set of agent rules</li>
+<li>Redo the architecture into much more fine-grained domains</li>
+<li>Add guardrails</li>
+<li>Improve testing, dramatically</li>
+<li>Then, finally, implement the software dark factory</li>
+</ol>
+<p>So what did we actually do? Let’s go through it.</p>
+<h2 id="1-concentrate-the-entire-set-of-architectural-and-product-documentation">1. Concentrate the entire set of architectural and product documentation<a hidden class="anchor" aria-hidden="true" href="#1-concentrate-the-entire-set-of-architectural-and-product-documentation">#</a></h2>
+<p>The OpenAI blog post has an excellent example of this. One of the biggest takeaways from it is that AGENTS.md should not be the encyclopedia. It should be the table of contents, pointing into a structured in-repo knowledge base.</p>
+<p>That is the same the direction I took, and based on a well battle-tested: progressive disclosure.</p>
+<p>When I say I moved the documentation into the repository, I mean everything: who the customer is, what kind of buyer we are selling to, what experience they are supposed to have, what feedback we have received, what the major workflows are, why certain design decisions were made, what tradeoffs matter, what constraints define the product, and so on.</p>
+<p>Then I made AGENTS.md into the map across all of that information, so agents could find what they needed when they needed it, rather than trying to cram everything into one giant instruction file.</p>
+<h2 id="2-architecture">2. Architecture<a hidden class="anchor" aria-hidden="true" href="#2-architecture">#</a></h2>
+<p>At this point I had to migrate my code from &ldquo;Here to There&rdquo;.</p>
+<p>That meant domain isolation, small granular changes, and one-way dependencies between subsystems as much as possible. The blog says this clearly enough, but I think it is worth internalizing properly. If you want agents to move quickly without slowly wrecking the codebase, they need strong structure around them. Small domains - coupled with smaller issues later on - will lead to small, short-lived PRs, which will move work further along.</p>
+<p>There was a long design phase, which involved exploring every aspect of the codebase and better identifying the domains. Once that was decided - going from ~4 components to over 14 subsystems in our case, it was time to start the migration.</p>
+<p>I did not automate that migration. It was a long and rough sprint, the &ldquo;old-fashioned way&rdquo; with N coding agents open in parallel, resulting in hundreds of PRs. It was rough, but there was enough testing around to support the churn.</p>
+<p>Remarkably, only one bug was introduced while the codebase churned into a new architecture. Agents were extremely competent at breaking these files apart per domain and moving code mostly untouched, while adding temporary scaffolding - &ldquo;connectors&rdquo;, &ldquo;ports&rdquo;, etc - to bridge the new and old architectures.</p>
+<p>That, by itself, tells you something about how capable software agents have become. And I&rsquo;m not the only one - the OpenClaw folks recently went over a similar migration with reports stating most of the code was rewritten. Again, this is possible now, but it requires a healthy dose of grind&hellip;</p>
+<h2 id="3-guardrails">3. Guardrails<a hidden class="anchor" aria-hidden="true" href="#3-guardrails">#</a></h2>
+<p>When GPT-5.4 repeatedly kept telling me “this is good enough,” I knew it was time for the next phase: guardrails.</p>
+<p>In reality, I was adding guardrails continuously, even during the migration. Every time a component was starting to take check, we&rsquo;d add scripts to enforce architecture checks at the CI level. Our CI became much more complex and much more thorough. It gained more phases, deeper checks, and stricter requirements.</p>
+<p>At this phase, I added much stronger GitHub checks and GitHub rulesets to prevent merges without reviews, without comments being addressed, and without required CI stages passing green. That let me trigger agent reviews and force proper responses before moving forward.</p>
+<p>I also did another pass on the docs I had written in phase one. Once that documentation existed, we could start enforcing it. That meant linters, checks, validation scripts, and consistency rules. This required a large set of bespoke scripts — many of them —, completely tailored to how we build software and our specific architecutre. These enforced dependency chains between modules, architectural boundaries, repository conventions, and so on.</p>
+<p>All of this was of course built with agentic coding itself.</p>
+<h2 id="4-testing-testing">4. Testing, testing<a hidden class="anchor" aria-hidden="true" href="#4-testing-testing">#</a></h2>
+<p>At this point we were almost there to &ldquo;unleash&rdquo; the agents. We had a much better architecture, but we still were not ready for massive agent throughput, because the testing was not good enough.</p>
+<p>Our unit tests were decent: we had plenty and added a very healthy chunk during the migration.</p>
+<p>But our integration tests were messy and required too many services set up in specific ways. Our end-to-end tests were even more brittle and basically had to be treated as occasional ceremonies that a central CI or dev would run occasionally.</p>
+<p>That had to change because it would be a massive constraint as the &ldquo;team&rdquo; got larger.</p>
+<p>More specifically, our entire testing - in fact, our entire application - had now to work cleanly on git worktrees. Git worktrees matter a lot here. They are what make true parallelism possible. The OpenAI team explicitly notes that making the app bootable per worktree was critical to letting agents run isolated instances per change.</p>
+<p>So we reworked the testing harness heavily. We moved toward Compose-based execution for everything. Integration tests ran entirely inside Compose; ports were auto-selected, and the harness learned how to cope with that. Then we did the same for end-to-end tests. The system boots everything and runs Playwright-based flows and the rest of the stack in isolation.</p>
+<p>This was not just about testing. It improved development ergonomics too. Now I can have tens of instances of our software and all its dependencies — databases, Temporal, Redis, workers, everything — all isolated. I can spin up as many instances as I want and start a new one trivially and discard it. Again, this would have been months of works a while ago; now it&rsquo;s a highly-focused &ldquo;afternoon&rdquo;.</p>
+<p>Git worktrees enabled the next level of parallelism and are definitely worth the effort.</p>
+<h2 id="5-then-finally-implement-the-software-dark-factory">5. Then, finally, implement the “Software Dark Factory”<a hidden class="anchor" aria-hidden="true" href="#5-then-finally-implement-the-software-dark-factory">#</a></h2>
+<p>So what is, concretely, a software dark factory?</p>
+<p>In my case, it is&hellip; a script. That may sound underwhelming; and it&rsquo;s by design.</p>
+<p>My basic starting point was GitHub Issues. I know many teams use Linear, but we are not there. So I decided to rely on GitHub labels. The dark factory essentially picks issues according to one or more labels that I pass in at startup, and starts working on them, one issue after the other.</p>
+<p>Why labels? Because I do not want it to take everything. I explicitly label issues that are eligible for autonomous development — and increasingly that is most of them. If the issue description is good enough, it goes into the queue.</p>
+<p>Then the factory loops issue by issue. It implements one, then moves to the next. That is the basic idea.</p>
+<p>I had to iterate a few times to get the dark factory to behave autonomously. In the first iterations, the script was extremely opinionated. It had a set of deterministic steps in it: after X, ask Codex for a review; after Y, do Z; if a comment appears, take action Q; and so on. In the real world, it kept failing on edge conditions that hadn&rsquo;t been considered.</p>
+<p>I was not being AI-pilled enough. I was not internalizing the bitter lesson. I should have been letting the model handle much more of the behavior itself. Now the loop basically hands the entire state of a GitHub PR to the model and says: advance this as far as you can. Then the model responds with one of a few outcomes. It may say that a human needs to take over the PR, and leave a comment explaining why. It may say to sleep for some number of seconds and wake up later because CI is still running and there is no point staying active. Or it may say that the work is merged. Because the model reads the entire GitHub state — comments, checks, failures, reviews, status, everything — it can usually resolve the next step by itself. If I leave a random steering comment in the middle of the PR while work is happening, it incorporates that too. But normally it just runs autonomously: resolving conflicts, addressing code review comments, and fixing CI failures.</p>
+<p>Originally, I also had very specific rules embedded in the dark factory prompts themselves about how the system should behave. That was a mistake. I realized that many of the rules I wanted did not belong in the dark factory script at all. They belonged in AGENTS.md, so they would apply universally to any coding agent - and to any work happening outside the dark factory. It is much better if your repo-level instructions teach agents how to respond to GitHub comments, when to leave a comment if uncertain, how to escalate, how to close loops, and how to behave generally speaking: adding comments when they are not sure or need clarification, etc. This just makes for a superior experience, and while it is mandatory in the dark factory agent, it is super helpful in general, as AGENTS.md instructions or skills.</p>
+<p>The dark-factory loop became much smaller. Its job is basically just to say: keep making progress. I also added an issue-ordering phase so that it picks the next logical thing to work on. I let it look at all candidate issues under the chosen label, so it can choose a sensible sequence and &ldquo;respect&rdquo; - or find - issue dependencies. Usually I do this ordering up front, partly to avoid hammering the GitHub APIs too often.</p>
+<p>Could I do all of this with skills and more elegant infrastructure? Probably. But here we are on April 15, 2026, and this is how I roll.</p>
+<h2 id="what-next">What next<a hidden class="anchor" aria-hidden="true" href="#what-next">#</a></h2>
+<p>The next phase is integrating observability and feedback. That is the next obvious layer, and it makes perfect sense. The OpenAI post talks about giving agents direct access not just to code and tests but also to logs, metrics, traces, and UI state, so they can validate behavior directly and reason from real runtime feedback.</p>
+<p>So that is where this goes next.</p>
+<h2 id="but-i-am-not-ready">&ldquo;But I am not ready!&rdquo;<a hidden class="anchor" aria-hidden="true" href="#but-i-am-not-ready">#</a></h2>
+<p>Look, I get it. But I&rsquo;d encourage you to do points 1 through 4 anyway. And do them now.</p>
+<p>Things like tighter architecture, stronger CI, richer documentation - including product requirements, users, etc -, better testing and perhaps worktree compatibility will dramatically improve your PR quality even before you go fully autonomous. Your agents - even if they are strangled on a tight leash - will get much better context and hence, work.</p>
+<p>And after seeing some more significant productivity gains, you will be much more willing to graduate, over time, into the role that actually matters here: engineering manager of an agentic system.</p>
+<h2 id="the-result">The result?<a hidden class="anchor" aria-hidden="true" href="#the-result">#</a></h2>
+<p>Last night I went to bed — rather late; these are exciting times — and woke up to 35+ high-quality PRs merged, cleaning up bugs, tech debt, and other issues. I took a brief look. They all looked excellent. Good job team!</p>
+<p>I also noticed one convention I do not like: agents, like people, tend to add more code than they remove. So I made a note to tune the contributor guidance in AGENTS.md. There&rsquo;s a certain set of features that may need refactoring soon; I may schedule a few issues to tackle it soon.</p>
+<p>I will also be adding more cron-style automations to discover new issues automatically. My code-reviewer cron job already found a couple of tech-debt issues we were not tracking and filed them.</p>
+<p>And I spent most of the morning thinking about product direction, unencumbered by implementation details.</p>
+<p>It is liberating. Honestly it is stressful in a different way, because now I think more about the bigger (business) issues.</p>
+<h2 id="oh--and-what-are-we-building">Oh — and what are we building?<a hidden class="anchor" aria-hidden="true" href="#oh--and-what-are-we-building">#</a></h2>
+<p>It is a platform called <a href="https://raw-labs.com/platform/kora/">Kora</a>. Kora is a workflow operating system for real business processes. It helps companies take the workflows they already rely on, approvals, escalations, exception handling, change control, and run them in a system that is durable, observable, auditable, and safe to evolve.</p>
+<p>Teams can start by implementing the workflows they already run today, with no agents required. Kora makes those processes executable, traceable, and easier to improve over time. Once the workflow is formalized, companies can identify which steps should remain human, which can be automated, and where AI agents can add value without giving up control, reliability, or oversight.</p>
+<p>Whether a process starts as an internal procedure, an approval flow, or a BPMN-style model, Kora provides a controlled path from manual operations to gradual automation. Instead of replacing operational workflows with brittle AI glue, it turns them into systems of execution, approval, and change.</p>
+<p>You can <a href="https://raw-labs.com/platform/kora/">learn more here</a>. Or just ping me at <a href="mailto:miguel@raw-labs.com">miguel@raw-labs.com</a> for a trial!</p>
+<p>Thanks for reading and I hope this was helpful!</p>
+<h2 id="references">References<a hidden class="anchor" aria-hidden="true" href="#references">#</a></h2>
+<ul>
+<li>Ryan Lopopolo, <a href="https://openai.com/index/harness-engineering/">Harness Engineering</a>, OpenAI.</li>
+<li>Latent Space, <a href="https://www.youtube.com/watch?v=CeOXx-XTYek">Extreme Harness Engineering: Ryan Lopopolo, OpenAI</a> (YouTube).</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://notes.spacebase.org/">notes.spacebase.org</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

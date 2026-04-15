@@ -4,10 +4,17 @@
     <title>notes.spacebase.org</title>
     <link>https://notes.spacebase.org/</link>
     <description>Recent content on notes.spacebase.org</description>
-    <generator>Hugo -- 0.160.0</generator>
+    <generator>Hugo -- 0.160.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 09 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 15 Apr 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://notes.spacebase.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building My Own Software Dark Factory</title>
+      <link>https://notes.spacebase.org/posts/building-my-own-software-dark-factory/</link>
+      <pubDate>Wed, 15 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://notes.spacebase.org/posts/building-my-own-software-dark-factory/</guid>
+      <description>A narration of implementing a system that autonomously implements software: in-repo knowledge, rigid architecture, guardrails, worktree-ready testing, and a small loop that advances PRs.</description>
+    </item>
     <item>
       <title>How to Build Software in the Age Where AI Writes Most of It</title>
       <link>https://notes.spacebase.org/posts/how-to-build-software-in-the-age-where-ai-writes-most-of-it/</link>
