@@ -1,8 +1,8 @@
 ---
 date: '2026-04-15'
-title: "Building My Own Software Dark Factory"
+title: "Building Our Own Software Dark Factory"
 draft: false
-description: "My experience building a software dark factory to automate the development of an existing application."
+description: "Our experience building a software dark factory to automate the development of an existing application."
 ---
 
 The following is a narration of our own experience implementing a software dark factory: a software system that autonomously implements software. We build the factory; the factory builds the product.
