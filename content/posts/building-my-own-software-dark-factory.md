@@ -109,7 +109,7 @@ Originally, I also had very specific rules embedded in the dark factory prompts 
 
 As a result, the dark-factory loop became much smaller. Its job is basically just to say: keep making progress. I also added an issue-ordering phase so that it picks the next logical issue to work on. I let it look at all candidate issues under the chosen label, so it can choose a sensible sequence and "respect" - or find - issue dependencies. Usually I do this ordering up front, partly to avoid hammering the GitHub APIs too often.
 
-Could I do all of this with skills and more elegant infrastructure? Probably. But here we are on April 15, 2026, and this is how I roll.
+Could I do all of this with skills and more elegant infrastructure? Will Codex and Claude Code introduce systems to do most of this? Probably, Surely. But here we are on April 15, 2026, and this is how I roll.
 
 ## What next
 
