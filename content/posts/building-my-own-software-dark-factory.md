@@ -15,7 +15,7 @@ This is my own experience applying the principles outlined in Ryan Lopopolo’s 
 
 The basic idea is to build a system that can autonomously build and maintain your software product. Before late 2025, this still felt unthinkable. Now it is very much real. The latest models gave a big jump in capability and, if we are being honest, a huge amount of development work is now automatable. Humans are increasingly there to guide, steer, constrain, review the system, and shape direction.
 
-That may sound shocking if you are not deep in software automation, but the trend line is unmistakable. Most of us now need to start acting more like engineering managers of agentic systems. If you had a team of a hundred developers under you, would you review every line of code, every commit, every pull request? Of course not. You would implement best practices, establish cultural habits, put in place guardrails, inspect progress, occasionally go deep in one area, maybe create a bug-fix week, and so on.
+That may sound shocking if you are not deep in software automation, but the trend line is unmistakable. Most of us now need to start acting more like engineering managers [of agentic systems]. If you had a team of a hundred developers under you, would you review every line of code, every commit, every pull request? Of course not. You would implement best practices, establish cultural habits, put in place guardrails, inspect progress, occasionally go deep in one area, maybe create a bug-fix week, and so on.
 
 Now you need to build a system that does exactly this for your agents.
 
