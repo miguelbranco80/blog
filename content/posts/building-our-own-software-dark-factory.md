@@ -109,7 +109,9 @@ Originally, we also had very specific rules embedded in the dark factory prompts
 
 As a result, the dark-factory loop became much smaller. Its job is basically just to say: keep making progress. We also added an issue-ordering phase so that it picks the next logical issue to work on. We let it look at all candidate issues under the chosen label, so it can choose a sensible sequence and "respect" - or find - issue dependencies. Usually we do this ordering up front, partly to avoid hammering the GitHub APIs too often.
 
-Could we do all of this with skills and more elegant infrastructure? Will Codex and Claude Code introduce systems to do most of this? Probably, Surely. But here we are on April 15, 2026, and this is how we roll.
+Another thing we found is that longer-running work does not always need a heavyweight PRD. In many cases, a well-written GitHub issue with linked sub-issues is enough. If the top-level issue is clear about the goal, and the sub-issues decompose the work sensibly, the system is generally able to pick up the structure and order the work accordingly. So in practice, the issue graph becomes a lightweight execution plan. It is not especially glamorous, but it works. Moreover, the contributor guidelines require agents to write documentation feature plans in the repo itself, so all in all, it works quite well in practice.
+
+Could we do all of this with skills and more elegant infrastructure? Will OpenAI and Anthropic introduce systems to do most of this? Probably, Surely. (Hint: they are already, such as OpenAI's Elixir). But here we are on April 15, 2026, and this is how we roll.
 
 ## What next
 
@@ -137,13 +139,7 @@ And after seeing some more significant productivity gains, you will be much more
 
 ## Oh — and what are we building?
 
-It is a platform called [Kora](https://raw-labs.com/platform/kora/). Kora is a workflow operating system for real business processes. It helps companies take the workflows they already rely on, approvals, escalations, exception handling, change control, and run them in a system that is durable, observable, auditable, and safe to evolve.
-
-Teams can start by implementing the workflows they already run today, with no agents required. Kora makes those processes executable, traceable, and easier to improve over time. Once the workflow is formalized, companies can identify which steps should remain human, which can be automated, and where AI agents can add value without giving up control, reliability, or oversight.
-
-Whether a process starts as an internal procedure, an approval flow, or a BPMN-style model, Kora provides a controlled path from manual operations to gradual automation. Instead of replacing operational workflows with brittle AI glue, it turns them into systems of execution, approval, and change.
-
-You can [learn more here](https://raw-labs.com/platform/kora/). Or just ping us at miguel@raw-labs.com for a trial!
+It is a platform called [Kora](https://raw-labs.com/platform/kora/). Kora is a workflow operating system for real business processes. It helps companies take the workflows they already rely on, approvals, escalations, exception handling, change control, and run them in a system that is durable, observable, auditable, and safe to evolve; and eventually, allow users to offload some parts of the workflow to agents. You can [learn more here](https://raw-labs.com/platform/kora/). Or just ping us at miguel@raw-labs.com for a trial!
 
 Thanks for reading and we hope this was helpful!
 
