@@ -111,7 +111,7 @@ As a result, the dark-factory loop became much smaller. Its job is basically jus
 
 Another thing we found is that longer-running work does not always need a heavyweight PRD. In many cases, a well-written GitHub issue with linked sub-issues is enough. If the top-level issue is clear about the goal, and the sub-issues decompose the work sensibly, the system is generally able to pick up the structure and order the work accordingly. So in practice, the issue graph becomes a lightweight execution plan. It is not especially glamorous, but it works. Moreover, the contributor guidelines require agents to write documentation feature plans in the repo itself, so all in all, it works quite well in practice.
 
-Could we do all of this with skills and more elegant infrastructure? Will OpenAI and Anthropic introduce systems to do most of this? Probably, Surely. (Hint: they are already, such as OpenAI's Elixir). But here we are on April 15, 2026, and this is how we roll.
+Could we do all of this with skills and more elegant infrastructure? Will OpenAI and Anthropic introduce systems to do most of this? Probably, Surely. (Hint: they are already, such as OpenAI's Symphony I'm guessing?). But here we are on April 15, 2026, and this is how we roll.
 
 ## What next
 
