@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Coding Agent Anxiety Is Mostly a Perspective Problem | notes.spacebase.org</title>
+<meta name="keywords" content="">
+<meta name="description" content="The anxiety around AI coding agents comes from comparing yourself to the process that produced the code, instead of treating the artifact like any other mature codebase.">
+<meta name="author" content="Miguel Branco">
+<link rel="canonical" href="https://notes.spacebase.org/posts/ai-coding-agent-anxiety-is-mostly-a-perspective-problem/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.aeb04085357f24835232aa89766467110fb6da019fa0a790d4d097b3949d7276.css" integrity="sha256-rrBAhTV/JINSMqqJdmRnEQ&#43;22gGfoKeQ1NCXs5SdcnY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://notes.spacebase.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://notes.spacebase.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://notes.spacebase.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://notes.spacebase.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://notes.spacebase.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://notes.spacebase.org/posts/ai-coding-agent-anxiety-is-mostly-a-perspective-problem/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ba0363cc644f41eda2ace0d78e742f89"}'></script>
+<meta property="og:url" content="https://notes.spacebase.org/posts/ai-coding-agent-anxiety-is-mostly-a-perspective-problem/">
+  <meta property="og:site_name" content="notes.spacebase.org">
+  <meta property="og:title" content="AI Coding Agent Anxiety Is Mostly a Perspective Problem">
+  <meta property="og:description" content="The anxiety around AI coding agents comes from comparing yourself to the process that produced the code, instead of treating the artifact like any other mature codebase.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-07-21T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-07-21T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI Coding Agent Anxiety Is Mostly a Perspective Problem">
+<meta name="twitter:description" content="The anxiety around AI coding agents comes from comparing yourself to the process that produced the code, instead of treating the artifact like any other mature codebase.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://notes.spacebase.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Coding Agent Anxiety Is Mostly a Perspective Problem",
+      "item": "https://notes.spacebase.org/posts/ai-coding-agent-anxiety-is-mostly-a-perspective-problem/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Coding Agent Anxiety Is Mostly a Perspective Problem",
+  "name": "AI Coding Agent Anxiety Is Mostly a Perspective Problem",
+  "description": "The anxiety around AI coding agents comes from comparing yourself to the process that produced the code, instead of treating the artifact like any other mature codebase.",
+  "keywords": [
+    
+  ],
+  "articleBody": "I’ve noticed that many developers (myself included) experience a certain anxiety when using AI coding agents.\nThe model writes tens of thousands of lines, now with a coherent architecture, consistent naming, decent design, and increasingly resembles what you’d expect from a mature codebase. It uses practices you weren’t always aware of. The natural reaction is to compare it to yourself and think: “I could never have written this.”\nPerhaps that’s the wrong comparison.\nAs developers, we already operate in several different modes.\nSometimes we’re the builder. We write the code ourselves. We know every line because we typed every line.\nSometimes we’re the reviewer. A colleague sends us a pull request. We don’t feel ownership over every line. We review the changes, look for mistakes, suggest improvements, perhaps discuss a different approach. The code arrives at human speed, so we can comfortably keep it in our heads.\nSometimes we’re acting as architects. Most of the time we’re not writing much code ourselves. Instead, we’re looking at someone else’s implementation and saying “don’t solve it this way; we’ll eventually need to cover this hole over here instead.” Again, we don’t own the typing. We own the direction.\nNone of this feels unusual.\nThere’s another mode we rarely think about.\nLearning from an existing codebase I still remember reading parts of the Doom 3 source code when it was released. It never crossed my mind that I should understand the whole thing. It was a large engine, built over many years and attempts, and I expected to slowly become familiar with the parts that interested me. I wasn’t trying to “finish” understanding Doom 3. I was simply exploring it.\nImportantly, there was no pressure.\nNobody expected me to compete with John Carmack. Nobody even expected that repository to represent a single implementation. It was the result of years of experiments, discarded ideas, prototypes, previous engines, and countless iterations. It was simply a mature codebase.\nI think AI coding agents should increasingly be viewed in exactly the same way.\nWe instinctively anthropomorphize them. Our brain creates a story of another programmer sitting beside us, typing impossibly quickly, and naturally concludes that we can’t compete.\nBut that’s probably not the right mental model. They are not the work of a single programmer sitting beside you. In a very real sense, they are built by and on all of us. It’s much closer to opening an existing repository.\nWhen I clone LLVM, PostgreSQL or Doom 3, I don’t expect to read every line before making a change. I build a mental model. I understand the architecture. I inspect the parts I’m modifying. Over time I become familiar with more and more of the system.\nThe fact that an AI generated that repository in twenty minutes instead of twenty years doesn’t fundamentally change how we should approach it.\nPerhaps this is where some of the anxiety comes from. We’re comparing ourselves to the process that produced the code, instead of interacting with the artifact that now exists.\nOnce the repository exists, it doesn’t really matter whether it took twenty minutes or twenty years to produce. The job is the same as it has always been: understand it well enough to make the next good decision.\nPerhaps that’s the more useful perspective.\n",
+  "wordCount" : "545",
+  "inLanguage": "en",
+  "datePublished": "2026-07-21T00:00:00Z",
+  "dateModified": "2026-07-21T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Miguel Branco"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://notes.spacebase.org/posts/ai-coding-agent-anxiety-is-mostly-a-perspective-problem/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "notes.spacebase.org",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://notes.spacebase.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://notes.spacebase.org/" accesskey="h" title="notes.spacebase.org (Alt + H)">notes.spacebase.org</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://notes.spacebase.org/posts/" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      AI Coding Agent Anxiety Is Mostly a Perspective Problem
+    </h1>
+    <div class="post-description">
+      The anxiety around AI coding agents comes from comparing yourself to the process that produced the code, instead of treating the artifact like any other mature codebase.
+    </div>
+    <div class="post-meta"><span title='2026-07-21 00:00:00 +0000 UTC'>July 21, 2026</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Miguel Branco
+
+</div>
+  </header> 
+  <div class="post-content"><p>I&rsquo;ve noticed that many developers (myself included) experience a certain anxiety when using AI coding agents.</p>
+<p>The model writes tens of thousands of lines, now with a coherent architecture, consistent naming, decent design, and increasingly resembles what you&rsquo;d expect from a mature codebase. It uses practices you weren&rsquo;t always aware of. The natural reaction is to compare it to yourself and think: &ldquo;I could never have written this.&rdquo;</p>
+<p>Perhaps that&rsquo;s the wrong comparison.</p>
+<p>As developers, we already operate in several different modes.</p>
+<p>Sometimes we&rsquo;re the builder. We write the code ourselves. We know every line because we typed every line.</p>
+<p>Sometimes we&rsquo;re the reviewer. A colleague sends us a pull request. We don&rsquo;t feel ownership over every line. We review the changes, look for mistakes, suggest improvements, perhaps discuss a different approach. The code arrives at human speed, so we can comfortably keep it in our heads.</p>
+<p>Sometimes we&rsquo;re acting as architects. Most of the time we&rsquo;re not writing much code ourselves. Instead, we&rsquo;re looking at someone else&rsquo;s implementation and saying &ldquo;don&rsquo;t solve it this way; we&rsquo;ll eventually need to cover this hole over here instead.&rdquo; Again, we don&rsquo;t own the typing. We own the direction.</p>
+<p>None of this feels unusual.</p>
+<p>There&rsquo;s another mode we rarely think about.</p>
+<h2 id="learning-from-an-existing-codebase">Learning from an existing codebase<a hidden class="anchor" aria-hidden="true" href="#learning-from-an-existing-codebase">#</a></h2>
+<p>I still remember reading parts of the Doom 3 source code when it was released. It never crossed my mind that I should understand the whole thing. It was a large engine, built over many years and attempts, and I expected to slowly become familiar with the parts that interested me. I wasn&rsquo;t trying to &ldquo;finish&rdquo; understanding Doom 3. I was simply exploring it.</p>
+<p>Importantly, there was no pressure.</p>
+<p>Nobody expected me to compete with John Carmack. Nobody even expected that repository to represent a single implementation. It was the result of years of experiments, discarded ideas, prototypes, previous engines, and countless iterations. It was simply a mature codebase.</p>
+<p>I think AI coding agents should increasingly be viewed in exactly the same way.</p>
+<p>We instinctively anthropomorphize them. Our brain creates a story of another programmer sitting beside us, typing impossibly quickly, and naturally concludes that we can&rsquo;t compete.</p>
+<p>But that&rsquo;s probably not the right mental model. They are not the work of a single programmer sitting beside you. In a very real sense, they are built by and on <em>all of us</em>. It&rsquo;s much closer to opening an existing repository.</p>
+<p>When I clone LLVM, PostgreSQL or Doom 3, I don&rsquo;t expect to read every line before making a change. I build a mental model. I understand the architecture. I inspect the parts I&rsquo;m modifying. Over time I become familiar with more and more of the system.</p>
+<p>The fact that an AI generated that repository in twenty minutes instead of twenty years doesn&rsquo;t fundamentally change how we should approach it.</p>
+<p>Perhaps this is where some of the anxiety comes from. <strong>We&rsquo;re comparing ourselves to the process that produced the code, instead of interacting with the artifact that now exists.</strong></p>
+<p>Once the repository exists, it doesn&rsquo;t really matter whether it took twenty minutes or twenty years to produce. The job is the same as it has always been: understand it well enough to make the next good decision.</p>
+<p>Perhaps that&rsquo;s the more useful perspective.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://notes.spacebase.org/">notes.spacebase.org</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

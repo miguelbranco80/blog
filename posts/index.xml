@@ -4,10 +4,17 @@
     <title>Posts on notes.spacebase.org</title>
     <link>https://notes.spacebase.org/posts/</link>
     <description>Recent content in Posts on notes.spacebase.org</description>
-    <generator>Hugo -- 0.160.1</generator>
+    <generator>Hugo -- 0.164.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 21 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://notes.spacebase.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI Coding Agent Anxiety Is Mostly a Perspective Problem</title>
+      <link>https://notes.spacebase.org/posts/ai-coding-agent-anxiety-is-mostly-a-perspective-problem/</link>
+      <pubDate>Tue, 21 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://notes.spacebase.org/posts/ai-coding-agent-anxiety-is-mostly-a-perspective-problem/</guid>
+      <description>The anxiety around AI coding agents comes from comparing yourself to the process that produced the code, instead of treating the artifact like any other mature codebase.</description>
+    </item>
     <item>
       <title>Building Our Own Software Dark Factory</title>
       <link>https://notes.spacebase.org/posts/building-our-own-software-dark-factory/</link>
