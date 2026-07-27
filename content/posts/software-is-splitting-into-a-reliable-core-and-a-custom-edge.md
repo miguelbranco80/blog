@@ -1,7 +1,7 @@
 ---
 date: '2026-07-27'
 title: "Software Is Splitting"
-draft: true
+draft: false
 description: "As agents make customization cheap, software products may become smaller: a reliable core supplied by a vendor, surrounded by company-specific software built by the customer."
 ---
 
