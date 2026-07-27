@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Software Is Splitting | notes.spacebase.org</title>
+<meta name="keywords" content="">
+<meta name="description" content="As agents make customization cheap, software products may become smaller: a reliable core supplied by a vendor, surrounded by company-specific software built by the customer.">
+<meta name="author" content="Miguel Branco">
+<link rel="canonical" href="https://notes.spacebase.org/posts/software-is-splitting-into-a-reliable-core-and-a-custom-edge/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.aeb04085357f24835232aa89766467110fb6da019fa0a790d4d097b3949d7276.css" integrity="sha256-rrBAhTV/JINSMqqJdmRnEQ&#43;22gGfoKeQ1NCXs5SdcnY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://notes.spacebase.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://notes.spacebase.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://notes.spacebase.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://notes.spacebase.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://notes.spacebase.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://notes.spacebase.org/posts/software-is-splitting-into-a-reliable-core-and-a-custom-edge/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ba0363cc644f41eda2ace0d78e742f89"}'></script>
+<meta property="og:url" content="https://notes.spacebase.org/posts/software-is-splitting-into-a-reliable-core-and-a-custom-edge/">
+  <meta property="og:site_name" content="notes.spacebase.org">
+  <meta property="og:title" content="Software Is Splitting">
+  <meta property="og:description" content="As agents make customization cheap, software products may become smaller: a reliable core supplied by a vendor, surrounded by company-specific software built by the customer.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-07-27T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-07-27T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Software Is Splitting">
+<meta name="twitter:description" content="As agents make customization cheap, software products may become smaller: a reliable core supplied by a vendor, surrounded by company-specific software built by the customer.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://notes.spacebase.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Software Is Splitting",
+      "item": "https://notes.spacebase.org/posts/software-is-splitting-into-a-reliable-core-and-a-custom-edge/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Software Is Splitting",
+  "name": "Software Is Splitting",
+  "description": "As agents make customization cheap, software products may become smaller: a reliable core supplied by a vendor, surrounded by company-specific software built by the customer.",
+  "keywords": [
+    
+  ],
+  "articleBody": "For most of the history of enterprise software, customization has been a sign that something went wrong.\nThe ideal product was the same product for everyone. A vendor built a broad application, added configuration screens, exposed an API, maintained a plugin system, and gradually accumulated enough features to satisfy a market. Customers adjusted their processes to fit the software, or paid consultants to close the remaining gaps.\nThat model made sense because software was expensive to write and even more expensive to maintain.\nBut if a product manager can now describe a missing workflow to a coding agent and have a working version that afternoon, the economics change. The obvious question is no longer, “Will the vendor add this feature?” It is, “Why are we waiting for the vendor at all?”\nThis does not mean every company becomes a software company and rebuilds everything it buys. That would be a fairly exhausting future. It means the boundary between what a vendor supplies and what a customer builds is moving.\nThe return of custom software Custom enterprise software never disappeared. It was simply pushed into awkward places: spreadsheets, internal tools, low-code applications, integration projects, consultancy work, and endless collections of configuration options.\nThe demand was always there because companies are not actually identical. Their approval chains, risk policies, data models, exceptions, and operating habits are specific to them. In many cases, those differences are the company.\nWe nevertheless tried to serve them with increasingly large horizontal products. The vendor would implement the common case, add switches for the less common cases, provide extensions for the strange cases, and eventually end up with a product nobody fully understood.\nAgents make another approach possible. Instead of asking a software vendor to anticipate every variation, a company can generate the last mile itself. The software surrounding a procurement process, a laboratory procedure, or an internal approval policy can be written for that exact organization.\nThis is hyper-specialization: not one application for an industry, but software shaped around a particular company, team, and sometimes even process.\nThe paradox is that hyper-specialized software may depend on more shared software, not less.\nNobody wants to rebuild the boring, difficult parts Cheap code does not make every part of software cheap.\nIt is easy to generate a dashboard. It is much harder to build a database that will not lose data. It is easy to generate an approval form. It is much harder to guarantee durable execution, permissions, audit trails, upgrades, rollback, and years of compatibility.\nThe distinction that matters is not simply generic versus custom. It is between the parts where specificity creates value and the parts where reliability creates value.\nCompanies will want to own and change the first category. They will generally prefer someone else to be responsible for the second.\nThis has been the direction of infrastructure for years. AWS and Azure made physical infrastructure someone else’s problem. Vercel moved the boundary further up the stack. Replit moved it closer to the application. Coding agents now make the application itself cheap to create and modify.\nEach step does not eliminate the layer below it. It turns that layer into something dependable enough that we can spend our time one level higher.\nThe same thing is now happening inside applications.\nThe product becomes the invariant The traditional software company tries to own the whole application. In the model emerging now, it may own a much smaller core.\nThat core should contain the part that is difficult, repeatable, and worth trusting to a specialist. Everything around it should be easy for a customer, or the customer’s agents, to inspect, compose, and change.\nFor a payments company, the core might be money movement, reconciliation, and regulatory correctness. For an identity company, it might be authentication, authorization, and secure credential handling. For a workflow system, it might be durable execution, release control, permissions, observability, and evidence.\nThe screens, rules, integrations, and process-specific behavior around those cores do not necessarily belong in the vendor’s main product anymore. They can be built where the relevant context exists: inside the customer’s organization.\nThis suggests a very different product discipline. Software providers need to decide what is genuinely theirs.\nWhat can they make substantially safer or more reliable than a generated implementation? Which guarantees require accumulated operational knowledge? Which part should remain stable while everything around it changes?\nThat is the product.\nThe rest may be examples, templates, agent instructions, APIs, schemas, and skills.\nOpen and closed are no longer enough We usually describe software as open or closed, self-hosted or SaaS, build or buy. Those distinctions are becoming less useful on their own.\nA service can be closed source but highly adaptable. An open-source application can still be extremely difficult to change. A SaaS product can expose every useful capability to an agent, while a self-hosted product can trap its users behind a rigid interface.\nThe more useful questions are practical ones:\nWhere does the runtime execute? Who owns the data and the resulting artifacts? Can the organization change the behavior without asking the vendor? Can agents understand and operate the product safely? Which guarantees remain the vendor’s responsibility? This is less about access to source code than access to agency.\nCustomers will increasingly expect to shape software without joining the vendor’s roadmap, waiting for an extension, or searching a plugin marketplace. They may still buy the underlying product. In fact, they may depend on it more heavily than before. But they will buy a stable capability, not a complete opinion about how their company should operate.\nSoftware delivered as a capability Skills for Claude and Codex point toward this model in a small but interesting way.\nA skill is not a conventional application. It gives an agent a reliable way to perform a particular kind of work: the context it needs, the tools it can call, the constraints it should respect, and the procedure it should follow. The agent incorporates that capability into a larger task.\nSoftware starts to look similar. Rather than making a user enter one large application and adapt to its worldview, a product can expose a focused capability that an agent uses inside a company-specific system.\nThis may produce smaller software companies with narrower products. It may also produce much larger enterprise stacks, assembled from databases, model providers, identity systems, durable runtimes, internal services, and generated applications.\nThat sounds like more fragmentation, and it probably is. But the fragmentation will be concentrated in the part that was always fragmented anyway: the actual way a company works.\nThe stable cores underneath it can become more specialized and more dependable.\nWhat this means for Kora This is also how I increasingly think about Kora.\nKora should not know the ideal procurement process, quality procedure, approval chain, or exception policy for every organization. Those are precisely the things an organization should own and adapt.\nThe reliable core is different. A workflow needs to execute durably under a released version. People, systems, and agents need scoped permissions. Every run needs to be observable, replayable, and able to leave evidence of what happened. Changes need release control and rollback. In many organizations, the runtime and its data need to remain on their own infrastructure.\nThose guarantees are difficult to improvise every time an agent generates a new internal application. They are the part worth providing once and making dependable.\nThe workflow itself is hyper-specialized. A product manager can describe it, connect it to the organization’s systems, change it as the business changes, and release a new version without asking Kora to add a feature to its universal workflow designer.\nKora provides the governed execution core. The organization provides the process.\nA smaller product, used more deeply The temptation for software companies has always been to expand: another module, another vertical, another set of configuration options. A larger product appeared to address a larger market.\nAgents reverse that logic. When customers can cheaply build the specific layer themselves, the most useful vendor may be the one that does less, draws a hard boundary around its responsibility, and makes that core exceptionally trustworthy.\nSo I do not think the future is simply SaaS versus custom software. Nor do I think product managers will replace every vendor with a pile of generated code.\nThe more plausible outcome is an enterprise stack made of reliable, specialized cores surrounded by software generated for one organization and nobody else.\nSoftware providers will have to decide which side of that boundary they belong on. And customers will have to decide which parts of their operation are important enough to own.\n",
+  "wordCount" : "1432",
+  "inLanguage": "en",
+  "datePublished": "2026-07-27T00:00:00Z",
+  "dateModified": "2026-07-27T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Miguel Branco"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://notes.spacebase.org/posts/software-is-splitting-into-a-reliable-core-and-a-custom-edge/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "notes.spacebase.org",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://notes.spacebase.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://notes.spacebase.org/" accesskey="h" title="notes.spacebase.org (Alt + H)">notes.spacebase.org</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://notes.spacebase.org/posts/" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Software Is Splitting
+    </h1>
+    <div class="post-description">
+      As agents make customization cheap, software products may become smaller: a reliable core supplied by a vendor, surrounded by company-specific software built by the customer.
+    </div>
+    <div class="post-meta"><span title='2026-07-27 00:00:00 +0000 UTC'>July 27, 2026</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Miguel Branco
+
+</div>
+  </header> 
+  <div class="post-content"><p>For most of the history of enterprise software, customization has been a sign that something went wrong.</p>
+<p>The ideal product was the same product for everyone. A vendor built a broad application, added configuration screens, exposed an API, maintained a plugin system, and gradually accumulated enough features to satisfy a market. Customers adjusted their processes to fit the software, or paid consultants to close the remaining gaps.</p>
+<p>That model made sense because software was expensive to write and even more expensive to maintain.</p>
+<p>But if a product manager can now describe a missing workflow to a coding agent and have a working version that afternoon, the economics change. The obvious question is no longer, &ldquo;Will the vendor add this feature?&rdquo; It is, &ldquo;Why are we waiting for the vendor at all?&rdquo;</p>
+<p>This does not mean every company becomes a software company and rebuilds everything it buys. That would be a fairly exhausting future. It means the boundary between what a vendor supplies and what a customer builds is moving.</p>
+<h2 id="the-return-of-custom-software">The return of custom software<a hidden class="anchor" aria-hidden="true" href="#the-return-of-custom-software">#</a></h2>
+<p>Custom enterprise software never disappeared. It was simply pushed into awkward places: spreadsheets, internal tools, low-code applications, integration projects, consultancy work, and endless collections of configuration options.</p>
+<p>The demand was always there because companies are not actually identical. Their approval chains, risk policies, data models, exceptions, and operating habits are specific to them. In many cases, those differences are the company.</p>
+<p>We nevertheless tried to serve them with increasingly large horizontal products. The vendor would implement the common case, add switches for the less common cases, provide extensions for the strange cases, and eventually end up with a product nobody fully understood.</p>
+<p>Agents make another approach possible. Instead of asking a software vendor to anticipate every variation, a company can generate the last mile itself. The software surrounding a procurement process, a laboratory procedure, or an internal approval policy can be written for that exact organization.</p>
+<p>This is hyper-specialization: not one application for an industry, but software shaped around a particular company, team, and sometimes even process.</p>
+<p>The paradox is that hyper-specialized software may depend on more shared software, not less.</p>
+<h2 id="nobody-wants-to-rebuild-the-boring-difficult-parts">Nobody wants to rebuild the boring, difficult parts<a hidden class="anchor" aria-hidden="true" href="#nobody-wants-to-rebuild-the-boring-difficult-parts">#</a></h2>
+<p>Cheap code does not make every part of software cheap.</p>
+<p>It is easy to generate a dashboard. It is much harder to build a database that will not lose data. It is easy to generate an approval form. It is much harder to guarantee durable execution, permissions, audit trails, upgrades, rollback, and years of compatibility.</p>
+<p>The distinction that matters is not simply generic versus custom. It is between the parts where specificity creates value and the parts where reliability creates value.</p>
+<p>Companies will want to own and change the first category. They will generally prefer someone else to be responsible for the second.</p>
+<p>This has been the direction of infrastructure for years. AWS and Azure made physical infrastructure someone else&rsquo;s problem. Vercel moved the boundary further up the stack. Replit moved it closer to the application. Coding agents now make the application itself cheap to create and modify.</p>
+<p>Each step does not eliminate the layer below it. It turns that layer into something dependable enough that we can spend our time one level higher.</p>
+<p>The same thing is now happening inside applications.</p>
+<h2 id="the-product-becomes-the-invariant">The product becomes the invariant<a hidden class="anchor" aria-hidden="true" href="#the-product-becomes-the-invariant">#</a></h2>
+<p>The traditional software company tries to own the whole application. In the model emerging now, it may own a much smaller core.</p>
+<p>That core should contain the part that is difficult, repeatable, and worth trusting to a specialist. Everything around it should be easy for a customer, or the customer&rsquo;s agents, to inspect, compose, and change.</p>
+<p>For a payments company, the core might be money movement, reconciliation, and regulatory correctness. For an identity company, it might be authentication, authorization, and secure credential handling. For a workflow system, it might be durable execution, release control, permissions, observability, and evidence.</p>
+<p>The screens, rules, integrations, and process-specific behavior around those cores do not necessarily belong in the vendor&rsquo;s main product anymore. They can be built where the relevant context exists: inside the customer&rsquo;s organization.</p>
+<p>This suggests a very different product discipline. Software providers need to decide what is genuinely theirs.</p>
+<p>What can they make substantially safer or more reliable than a generated implementation? Which guarantees require accumulated operational knowledge? Which part should remain stable while everything around it changes?</p>
+<p>That is the product.</p>
+<p>The rest may be examples, templates, agent instructions, APIs, schemas, and skills.</p>
+<h2 id="open-and-closed-are-no-longer-enough">Open and closed are no longer enough<a hidden class="anchor" aria-hidden="true" href="#open-and-closed-are-no-longer-enough">#</a></h2>
+<p>We usually describe software as open or closed, self-hosted or SaaS, build or buy. Those distinctions are becoming less useful on their own.</p>
+<p>A service can be closed source but highly adaptable. An open-source application can still be extremely difficult to change. A SaaS product can expose every useful capability to an agent, while a self-hosted product can trap its users behind a rigid interface.</p>
+<p>The more useful questions are practical ones:</p>
+<ul>
+<li>Where does the runtime execute?</li>
+<li>Who owns the data and the resulting artifacts?</li>
+<li>Can the organization change the behavior without asking the vendor?</li>
+<li>Can agents understand and operate the product safely?</li>
+<li>Which guarantees remain the vendor&rsquo;s responsibility?</li>
+</ul>
+<p>This is less about access to source code than access to agency.</p>
+<p>Customers will increasingly expect to shape software without joining the vendor&rsquo;s roadmap, waiting for an extension, or searching a plugin marketplace. They may still buy the underlying product. In fact, they may depend on it more heavily than before. But they will buy a stable capability, not a complete opinion about how their company should operate.</p>
+<h2 id="software-delivered-as-a-capability">Software delivered as a capability<a hidden class="anchor" aria-hidden="true" href="#software-delivered-as-a-capability">#</a></h2>
+<p>Skills for Claude and Codex point toward this model in a small but interesting way.</p>
+<p>A skill is not a conventional application. It gives an agent a reliable way to perform a particular kind of work: the context it needs, the tools it can call, the constraints it should respect, and the procedure it should follow. The agent incorporates that capability into a larger task.</p>
+<p>Software starts to look similar. Rather than making a user enter one large application and adapt to its worldview, a product can expose a focused capability that an agent uses inside a company-specific system.</p>
+<p>This may produce smaller software companies with narrower products. It may also produce much larger enterprise stacks, assembled from databases, model providers, identity systems, durable runtimes, internal services, and generated applications.</p>
+<p>That sounds like more fragmentation, and it probably is. But the fragmentation will be concentrated in the part that was always fragmented anyway: the actual way a company works.</p>
+<p>The stable cores underneath it can become more specialized and more dependable.</p>
+<h2 id="what-this-means-for-kora">What this means for Kora<a hidden class="anchor" aria-hidden="true" href="#what-this-means-for-kora">#</a></h2>
+<p>This is also how I increasingly think about <a href="https://kora.raw-labs.com">Kora</a>.</p>
+<p>Kora should not know the ideal procurement process, quality procedure, approval chain, or exception policy for every organization. Those are precisely the things an organization should own and adapt.</p>
+<p>The reliable core is different. A workflow needs to execute durably under a released version. People, systems, and agents need scoped permissions. Every run needs to be observable, replayable, and able to leave evidence of what happened. Changes need release control and rollback. In many organizations, the runtime and its data need to remain on their own infrastructure.</p>
+<p>Those guarantees are difficult to improvise every time an agent generates a new internal application. They are the part worth providing once and making dependable.</p>
+<p>The workflow itself is hyper-specialized. A product manager can describe it, connect it to the organization&rsquo;s systems, change it as the business changes, and release a new version without asking Kora to add a feature to its universal workflow designer.</p>
+<p>Kora provides the governed execution core. The organization provides the process.</p>
+<h2 id="a-smaller-product-used-more-deeply">A smaller product, used more deeply<a hidden class="anchor" aria-hidden="true" href="#a-smaller-product-used-more-deeply">#</a></h2>
+<p>The temptation for software companies has always been to expand: another module, another vertical, another set of configuration options. A larger product appeared to address a larger market.</p>
+<p>Agents reverse that logic. When customers can cheaply build the specific layer themselves, the most useful vendor may be the one that does less, draws a hard boundary around its responsibility, and makes that core exceptionally trustworthy.</p>
+<p>So I do not think the future is simply SaaS versus custom software. Nor do I think product managers will replace every vendor with a pile of generated code.</p>
+<p>The more plausible outcome is an enterprise stack made of reliable, specialized cores surrounded by software generated for one organization and nobody else.</p>
+<p>Software providers will have to decide which side of that boundary they belong on. And customers will have to decide which parts of their operation are important enough to own.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://notes.spacebase.org/">notes.spacebase.org</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
